@@ -20,15 +20,6 @@ Vagrant.configure("2") do |config|
 config.vm.provision "shell", path: "scripts/install-minikube.sh"
 ####################Apply configuration####################
 config.vm.provision "shell", inline: <<-SHELL
-echo "Add&Update helm repo"
-sudo helm repo add grafana https://grafana.github.io/helm-charts
-sudo helm repo update
-
-echo "Create namespace"
-sudo kubectl create ns loki
-
-echo "Install Loki stack"
-sudo helm upgrade --install loki grafana/loki-stack  --set grafana.enabled=true,prometheus.enabled=true,prometheus.alertmanager.persistentVolume.enabled=false,prometheus.server.persistentVolume.enabled=false,plugins=grafana-piechart-panel -n loki
-sudo kubectl apply -f /vagrant/files/grafana-ingress.yaml
+echo "Done !"
 SHELL
 end
